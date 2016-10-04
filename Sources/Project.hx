@@ -5,15 +5,22 @@ package;
 import kha.input.Gamepad;
 
 class Project {
+	var m_kDeadZone (default,never) : Float = 0.08;
+
 	public function new() {
-		trace("Input Thing");
-		var gpad = Gamepad.get();
-		gpad.notify(onGamepadAxis, onGamepadButton);
+		trace("-[ Input Thing ]-");
+
+		var pad = Gamepad.get();
+		pad.notify(onGamepadAxis, onGamepadButton);
 	}
 	
 	public function onGamepadAxis(axis:Int, value:Float):Void {
-		//trace(axis+": "+value);
+		if ((value < -m_kDeadZone) || (value > m_kDeadZone))
+		{
+			trace("Axis " + axis + ": " + value);
+		}
 
+		/*
 		///LEFT ANALOG STICK
 		if (axis == 0){
 			if (value < -0.5){
@@ -57,9 +64,16 @@ class Project {
 				trace('RIGHT TRIGGER');
 			}
 		}
+		*/
 	}
 	
 	public function onGamepadButton(button:Int, value:Float):Void {
+		if ((value < -m_kDeadZone) || (value > m_kDeadZone))
+		{
+			trace("Button " + button + ": " + value);
+		}
+		
+		/*
 		///ABXY BUTTONS
 		if (button == 0){
 			trace('A');
@@ -113,5 +127,6 @@ class Project {
 		} else if (button == 17){
 			trace('euineunitue');
 		}
+		*/
 	}
 }
