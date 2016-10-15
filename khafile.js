@@ -1,4 +1,4 @@
-let project = new Project('InputThing');
+let project = new Project('Input Thing');
 
 project.addAssets('Assets/**');
 project.addSources('Sources');
